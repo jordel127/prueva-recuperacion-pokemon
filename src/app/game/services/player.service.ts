@@ -10,6 +10,9 @@ export class PlayerService {
   private _lifes: number = 0;
   private _highScore: number = 0;
 
+  puntos: string | null = null;
+
+
   get score(): number {
     return this._score;
   }
@@ -34,15 +37,19 @@ export class PlayerService {
     this._score = 0;
     this._lifes = 5;
   }
-  
+
   increasePoints() {
-    this._score += 10;
+    this.puntos = localStorage.getItem("puntos");
+    this._score = Number(this.puntos) + 10;
+
+    console.log(this._score);
+
+    localStorage.setItem("puntos", this._score.toString());
   }
 
   decreaseLifes() {
     this._lifes -= 1;
     if (this._lifes <= 0) {
-      
       if (this._score > this._highScore) this.newHighScore()
 
       this._router.navigate(['/game/gameover']);

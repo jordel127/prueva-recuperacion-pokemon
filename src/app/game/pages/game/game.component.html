@@ -1,9 +1,10 @@
 <ng-container *ngIf="loaded; else Loading">
 
     <div fxLayout="row" fxLayoutAlign="space-around">
-        <div>
-            <h3>Points: {{ score }}</h3>
-        </div>
+      <div>
+        <h3>Jugador: {{nombreJugador}}</h3>
+        <h3>Puntos: {{puntos}}</h3>
+      </div>
 
         <div>
             <img *ngFor="let heart of hearts" class="heart" src="assets/heart.png">
@@ -14,9 +15,9 @@
         <div>
             <h2>Who is that Pokemon?...</h2>
         </div>
-    
-        <div>
-            <app-pokemon-view [url]="urlImage"
+        <div  id="ImagenPokemon" (dblclick)="disminuirTamanyo()">
+            <app-pokemon-view
+                              [url]="urlImage"
                               [show]="selected"
                               [width]="275"
                               [height]="200">
@@ -38,14 +39,14 @@
                 </li>
             </ul>
         </div>
-    
+
         <!-- <div>
             <h3>Points: {{ points }}</h3>
         </div>
         <div>
             <img *ngFor="let heart of hearts" class="heart" src="assets/heart.png">
         </div> -->
-    
+
         <div *ngIf="selected">
             <button mat-raised-button
                     color="primary"
@@ -54,7 +55,7 @@
             </button>
         </div>
     </div>
-    
+
 </ng-container>
 
 <ng-template #Loading>

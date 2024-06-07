@@ -8,6 +8,10 @@ import { PlayerService } from '../../services/player.service';
 })
 export class GameoverComponent implements OnInit {
 
+  //Array de jugadores i puntos
+  Arrayjugadores: string[] = [];
+  ArraypuntosJugadores: string[] = [];
+
   get score(): number {
     return this.playerService.score;
   }
@@ -21,6 +25,14 @@ export class GameoverComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // localStorage.getItem("nombre");
+    // localStorage.getItem("puntos");
+    //
+    // sessionStorage.setItem("Arrayjugadores", JSON.stringify(this.Arrayjugadores));
+    // sessionStorage.setItem("Arraypuntos", this.ArraypuntosJugadores);
+    //
+    // console.log(this.Arrayjugadores[0].nombre);
+    // console.log(this.ArraypuntosJugadores[0].puntos);
   }
 
 }

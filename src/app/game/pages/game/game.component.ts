@@ -17,10 +17,13 @@ export class GameComponent implements OnInit {
   private _pokemons: Pokemon[] = [];
   private _pokemon!: Pokemon;
 
+  nombreJugador: string | null = null;
+  puntos: string | null = null;
+
   get score(): number {
     return this.playerService.score;
   }
-  
+
   get hearts(): Array<any> {
     return Array(this.playerService.lifes);
   }
@@ -54,6 +57,18 @@ export class GameComponent implements OnInit {
   ngOnInit(): void {
     this.playerService.resetGame();
     this.newGame();
+
+    this.nombreJugador = localStorage.getItem("nombre");
+    this.puntos = localStorage.getItem("puntos");
+  }
+
+  disminuirTamanyo() {
+    const image = document.querySelector('#ImagenPokemon app-pokemon-view img') as HTMLImageElement;
+    if (image) {
+      image.style.width = '100px';
+      image.style.height = '100px';
+      //image.style.transform = 'rotate(90deg)'; // Rota la imagen 90 grados
+    }
   }
 
   onSelect(pokemonName: string) {
@@ -62,13 +77,15 @@ export class GameComponent implements OnInit {
 
     if (pokemonName === this._pokemon.name) {
       this.playerService.increasePoints();
+      this.puntos = localStorage.getItem("puntos");
+      console.log(this.puntos);
     }
 
     if (pokemonName !== this._pokemon.name) {
       this.playerService.decreaseLifes();
       console.log('incorrect');
     }
-    
+
   }
 
   // this function es execute every time that user click in next game
